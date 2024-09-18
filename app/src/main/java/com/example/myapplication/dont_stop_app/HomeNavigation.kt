@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.dont_stop_app.Cart
 import org.example.project.presentation.NavigationViewModel
 
 @SuppressLint("SuspiciousIndentation")
@@ -34,7 +35,7 @@ fun HomeNavigation() {
             when (selectedIndex) {
                 0 -> HomeScreen()
                 1 -> ShopScreen()
-                2 -> HomeScreen()
+                2 -> Cart()
                 3 -> SettingsScreen()
             }
         }
