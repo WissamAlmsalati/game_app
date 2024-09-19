@@ -9,6 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.AutoAwesomeMosaic
 import androidx.compose.material.icons.filled.DeleteOutline
@@ -208,42 +209,72 @@ clip = false
 }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ItemDetailsScreen( modifier: Modifier = Modifier, navController: NavController) {
+fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavController) {
     var selectedPlatform by remember { mutableStateOf(-1) }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .padding(top = 80.dp, bottom = 25.dp)
-    ) {
-        Column(
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxHeight()
-        ) {
-            Column {
-                Image(
-                    painter = painterResource(id = R.drawable.cod),
-                    contentDescription = "image description",
-                    contentScale = ContentScale.FillBounds,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(226.dp)
-                        .clip(RoundedCornerShape(36.dp))
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                ScrollableRowOfImages()
-                Spacer(modifier = Modifier.height(16.dp))
-                GameInfo()
-                Spacer(modifier = Modifier.height(16.dp))
-                PlatformSelection()
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Item Details") },
+                scrollBehavior = scrollBehavior,
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MainColor,
+                    titleContentColor = WhiteColor
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { /* Handle back navigation */ }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = WhiteColor
+                        )
+                    }
+                }
+            )
+        },
+        content = { innerPadding ->
+            Box(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(innerPadding)
+                    .padding(16.dp)
+                    .padding(top = 20.dp, bottom = 25.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.SpaceBetween,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.fillMaxHeight()
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.cod),
+                            contentDescription = "image description",
+                            contentScale = ContentScale.FillBounds,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(226.dp)
+                                .clip(RoundedCornerShape(36.dp))
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        ScrollableRowOfImages()
+                        Spacer(modifier = Modifier.height(16.dp))
+                        GameInfo()
+                        Spacer(modifier = Modifier.height(16.dp))
+                        PlatformSelection()
+                    }
+                    addtocart()
+                }
             }
-            addtocart()
         }
-    }
+    )
 }
+
 
 @Composable
 fun ScrollableRowOfImages() {
