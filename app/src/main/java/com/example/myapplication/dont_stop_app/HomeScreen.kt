@@ -121,7 +121,7 @@ fun HomeScreen(navController: NavController) {
                                 .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
                                 .clickable {
                                     // Navigate to product detail screen
-                                    navController.navigate("home_screen")
+                                    navController.navigate("product_detail_screen")
                                 }
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(Color.White)

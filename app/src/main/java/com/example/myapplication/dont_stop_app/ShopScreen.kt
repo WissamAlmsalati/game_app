@@ -111,8 +111,6 @@ fun ShopScreen() {
                                 .height(914.dp)
                                 .background(color = Color(0xF0FEFEFE))) {
 
-
-
                                 Column() {
                                     Image(
                                         painter = painterResource(id = R.drawable.cod),

@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.dont_stop_app.HomeNavigation
 import com.example.dont_stop_app.SettingsScreen
+import com.example.myapplication.dont_stop_app.ItemDetailsScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.util.MySharedPref
 import com.example.myapplication.view.AuthinticationScreens.Screens.LoginScreen
@@ -44,9 +45,10 @@ class MainActivity : ComponentActivity() {
 fun SetupNavGraph(navController: NavHostController, startDestination: String) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable("login_screen") { LoginScreen(navController = navController) }
-        composable("home_screen") { HomeNavigation() }
+        composable("home_screen") { HomeNavigation(navController = navController) }
         composable("settings_screen") { SettingsScreen(navController = navController) }
         composable("signup_screen") { SignupScreen(navController = navController) }
+        composable("product_detail_screen") { ItemDetailsScreen(navController = navController) }
         composable("splash_screen") {
             SplashScreen {
                 navController.navigate("onboarding_screen") {
