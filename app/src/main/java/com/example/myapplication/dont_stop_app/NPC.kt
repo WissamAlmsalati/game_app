@@ -225,7 +225,9 @@ fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavControlle
                     titleContentColor = WhiteColor
                 ),
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back navigation */ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack() // Navigate back to the previous screen
+                    }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Back",
@@ -275,6 +277,9 @@ fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavControlle
         }
     )
 }
+
+
+
 
 @Composable
 fun ScrollableRowOfImages() {
@@ -385,6 +390,8 @@ fun PlatformButton(platformName: String, isSelected: Boolean, onClick: () -> Uni
 
 @Composable
 fun addtocart() {
+    var showDialog by remember { mutableStateOf(false) } // State to control dialog visibility
+
     Box(
         modifier = Modifier
             .shadow(4.dp)
@@ -406,7 +413,9 @@ fun addtocart() {
                 )
             )
             Button(
-                onClick = { /* Handle Add to Cart click */ },
+                onClick = {
+                    showDialog = true // Show dialog when button is clicked
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF007AC3),
                     contentColor = Color.White
@@ -415,6 +424,28 @@ fun addtocart() {
                 Text(text = "Add to Cart")
             }
         }
+    }
+
+    // Show the dialog when showDialog is true
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showDialog = false // Hide dialog when dismissed
+            },
+            confirmButton = {
+                Button(onClick = {
+                    showDialog = false // Hide dialog when clicked
+                }) {
+                    Text("OK")
+                }
+            },
+            title = {
+                Text(text = "Success")
+            },
+            text = {
+                Text("Item added to cart successfully!")
+            }
+        )
     }
 }
 
