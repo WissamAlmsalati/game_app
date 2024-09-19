@@ -40,12 +40,12 @@ fun HomeScreen(navController: NavController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val products = listOf(
-        Product(R.drawable.cod, "Call Of Duty", "Detail 1", "70$"),
-        Product(R.drawable.fifa, "FC24", "Detail 2", "50$"),
-        Product(R.drawable.cod, "Product Name 3", "Product Detail 3", "Product Price 3"),
-        Product(R.drawable.fifa, "Product Name 4", "Product Detail 4", "Product Price 4"),
-        Product(R.drawable.cod, "Product Name 5", "Product Detail 5", "Product Price 5"),
-        Product(R.drawable.cod, "Product Name 6", "Product Detail 6", "Product Price 6")
+        Product(R.drawable.cod, "Call Of Duty", "Product Detail", "70$"),
+        Product(R.drawable.fifa, "FC24", "Product Detail", "50$"),
+        Product(R.drawable.ghost_of_tsushima, "GHOST", "Product Detail", "40$"),
+        Product(R.drawable.god_of_war_ragnarok_featured_image, "God of War", "Product Detail", "50$"),
+        Product(R.drawable.thumb_1920_1168382_1024x576, "FORZA HORIZON", "Product Detail", "59.99$"),
+        Product(R.drawable._1nv13knp_l, "Nintendo Controller", "Product Detail", "30$")
     )
 
     Scaffold(
@@ -79,7 +79,7 @@ fun HomeScreen(navController: NavController) {
                             painter = painterResource(id = R.drawable.applogo),
                             contentDescription = "Action Image",
                             modifier = Modifier
-                                .size(24.dp)
+
                                 .clip(RoundedCornerShape(12.dp))
                         )
                     }

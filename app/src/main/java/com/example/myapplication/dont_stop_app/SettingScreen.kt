@@ -56,6 +56,7 @@ fun SettingsScreen(navController: NavController) {
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
                 .padding(innerPadding) // Apply inner padding from Scaffold
+                .padding(16.dp) // Apply inner padding from Scaffold
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 

@@ -41,7 +41,7 @@ fun SignupScreen(navController: NavController) {
 
         if (viewModel.isSignupSuccess) {
             Log.d("", "SignupScreen: Sighup success")
-            navController.navigate("login_screen")
+            navController.navigate("home_screen")
         } else {
                 snackbarHostState.showSnackbar(
                     message = "Signup failed",
@@ -88,7 +88,7 @@ fun SignupScreen(navController: NavController) {
                         unfocusedColor = Color.White,
                         shape = RoundedCornerShape(15.dp),
                         focusColor = Color(0xFF007AC3),
-                        placeholderTextStyle = TextStyle(fontSize = 8.sp)
+                        placeholderTextStyle = TextStyle(fontSize = 12.sp)
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     CustomLogField(
@@ -101,7 +101,7 @@ fun SignupScreen(navController: NavController) {
                         unfocusedColor = Color.White,
                         shape = RoundedCornerShape(15.dp),
                         focusColor = Color(0xFF007AC3),
-                        placeholderTextStyle = TextStyle(fontSize = 8.sp)
+                        placeholderTextStyle = TextStyle(fontSize = 12.sp)
                     )
                     Spacer(modifier = Modifier.height(5.dp))
                     CustomLogField(
@@ -114,7 +114,7 @@ fun SignupScreen(navController: NavController) {
                         unfocusedColor = Color.White,
                         shape = RoundedCornerShape(15.dp),
                         focusColor = Color(0xFF007AC3),
-                        placeholderTextStyle = TextStyle(fontSize = 8.sp)
+                        placeholderTextStyle = TextStyle(fontSize = 12.sp)
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     CustomButton(

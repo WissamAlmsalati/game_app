@@ -31,7 +31,7 @@ fun CustomButton(
         shape = RoundedCornerShape(16.dp), // Rounded corners
         modifier = Modifier
 
-            .width(375.dp)
+            .width(350.dp)
             .height(60.dp)
             .padding(vertical = 8.dp),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 20.dp) // Add elevation to the button
@@ -39,7 +39,7 @@ fun CustomButton(
     ) {
         Text(
             text = buttonText,
-            fontSize = 8.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
     }

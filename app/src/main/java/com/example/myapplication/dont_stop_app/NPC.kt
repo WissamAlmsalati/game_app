@@ -599,7 +599,7 @@ fun OrderInfo(navController: NavController) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.cod),
+                                painter = painterResource(id = R.drawable.google_map),
                                 contentDescription = "image description",
                                 contentScale = ContentScale.FillBounds,
                                 modifier = Modifier
@@ -652,7 +652,7 @@ fun OrderInfo(navController: NavController) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.cod),
+                                painter = painterResource(id = R.drawable.visa_logo_white_background),
                                 contentDescription = "Visa",
                                 contentScale = ContentScale.FillBounds,
                                 modifier = Modifier
@@ -676,7 +676,7 @@ fun OrderInfo(navController: NavController) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.cod),
+                                painter = painterResource(id = R.drawable.cash1_),
                                 contentDescription = "Cash",
                                 contentScale = ContentScale.FillBounds,
                                 modifier = Modifier

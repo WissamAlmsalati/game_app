@@ -45,7 +45,7 @@ fun CustomLogField(
                 .align(Alignment.Start)
                 .padding(start = 3.dp, bottom = 10.dp),
             style = TextStyle(
-                fontSize = 8.sp,
+                fontSize = 16.sp,
                 color = Color.White
             )
         )
@@ -53,7 +53,7 @@ fun CustomLogField(
             shape = shape,
             elevation = CardDefaults.cardElevation(defaultElevation = 20.dp),
             modifier = Modifier
-                .width(375.dp)
+                .width(350.dp)
                 .height(60.dp)
         ) {
             OutlinedTextField(

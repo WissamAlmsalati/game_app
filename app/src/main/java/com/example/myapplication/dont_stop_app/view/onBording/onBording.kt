@@ -40,9 +40,9 @@ fun OnboardingScreen(navController: NavController) {
 
     val buttonTexts = listOf("Next", "Next", "Start")
     val imageResources = listOf(
-        drawable.cod,
-        drawable.fifa,
-        drawable.cod
+        drawable.code,
+        drawable.full_shot_ninja_wearing_equipment,
+        drawable.view_3d_video_game_controller
     )
     Spacer(modifier = Modifier.height((-10).dp))
     Box(

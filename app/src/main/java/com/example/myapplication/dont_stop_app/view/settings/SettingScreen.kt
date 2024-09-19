@@ -32,12 +32,14 @@ import com.example.myapplication.R
 fun SettingsScreen() {
     Column(
         modifier = Modifier
+
             .fillMaxSize()
             .background(Color(0xFFF5F5F5)), // Enable vertical scrolling
     ) {
         // Top Section
         Box(
             modifier = Modifier
+
                 .fillMaxWidth()
                 .height(56.dp)
                 .background(Color(0xFF007AC3)),
@@ -95,6 +97,7 @@ fun SettingsScreen() {
                 Button(
                     modifier = Modifier
                         .fillMaxSize()
+                        .width(350.dp)
                         .background(Color(0xFFFFFFFF))
                         .shadow(8.dp, shape = RoundedCornerShape(10.dp)),
                     onClick = { Unit },
@@ -135,7 +138,7 @@ fun CustomButton(text: String, icon: Int) {
     Spacer(modifier = Modifier.height(19.dp))
     Box(
         modifier = Modifier
-            .fillMaxWidth()
+            .width(350.dp)
             .height(43.dp),
         contentAlignment = Alignment.Center
     ) {

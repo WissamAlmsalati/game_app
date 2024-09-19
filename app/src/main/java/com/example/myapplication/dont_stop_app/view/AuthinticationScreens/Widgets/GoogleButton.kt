@@ -38,7 +38,7 @@ fun GoogleSignInButton(
         ),
         shape = RoundedCornerShape(16.dp), // Rounded corners
         modifier = Modifier
-            .width(375.dp)
+            .width(350.dp)
             .height(60.dp)
             .padding(vertical = 8.dp),
         elevation = ButtonDefaults.buttonElevation(defaultElevation = 20.dp) // Add elevation to the button
@@ -49,17 +49,17 @@ fun GoogleSignInButton(
         ) {
             // Google Logo (Assuming you have the Google logo image in your resources)
             Image(
-                painter = painterResource(id = R.drawable.applogo), // Replace with your Google logo resource
+                painter = painterResource(id = R.drawable.google), // Replace with your Google logo resource
                 contentDescription = "Google Logo",
                 modifier = Modifier
                     .size(24.dp)
-                    .padding(top = 6.dp,end = 8.dp),
+                    .padding(top = 4.dp,end = 8.dp),
                 contentScale = ContentScale.Fit
             )
             // Button Text
             Text(
                 text = buttonText,
-                fontSize = 8.sp,
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold
             )
         }
