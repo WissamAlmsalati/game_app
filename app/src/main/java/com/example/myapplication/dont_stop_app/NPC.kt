@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.dont_stop_app.ui.theme.MainColor
 import com.example.dont_stop_app.ui.theme.WhiteColor
 import com.example.myapplication.R
@@ -107,7 +108,7 @@ fun Cart() {
 
 
 @Composable
-fun ItemDetails(modifier: Modifier = Modifier) {
+fun ItemDetailsScreen( modifier: Modifier = Modifier, navController: NavController) {
     var selectedPlatform by remember { mutableStateOf(-1) }
 
     Box(
@@ -151,7 +152,7 @@ fun card() {
             .padding(16.dp)
             .height(120.dp) // Adjusted height to fit the button
             .width(358.dp)
-            .background(Color.Gray, shape = RoundedCornerShape(16.dp))
+            .background(Color.White, shape = RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
     ) {
         Column(

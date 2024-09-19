@@ -33,7 +33,7 @@ fun HomeNavigation() {
             modifier = Modifier.fillMaxSize()
         ) {
             when (selectedIndex) {
-                0 -> HomeScreen()
+                0 -> HomeScreen( navController = navController)
                 1 -> ShopScreen()
                 2 -> Cart()
                 3 -> SettingsScreen()

@@ -62,6 +62,10 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-coil:0.15.0")
     implementation("androidx.compose.material:material-icons-extended:1.7.1")
     implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("io.ktor:ktor-client-core:2.0.0")
+    implementation("io.ktor:ktor-client-cio:2.0.0")
+    implementation("io.ktor:ktor-client-content-negotiation:2.0.0")
+    implementation("io.ktor:ktor-serialization-gson:2.0.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

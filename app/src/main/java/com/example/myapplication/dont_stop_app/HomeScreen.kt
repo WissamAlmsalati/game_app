@@ -43,7 +43,7 @@ import com.example.myapplication.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen( navController: NavController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
@@ -106,6 +106,11 @@ fun HomeScreen() {
                                 .height(200.dp)
                                 .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
                                 .clickable {
+                                    // Navigate to product detail screen
+
+                                    navController.navigate("home_screen")
+
+
                                 }
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(Color.White)
