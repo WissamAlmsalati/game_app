@@ -41,7 +41,7 @@ import compose.icons.simpleicons.Xbox
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Cart() {
+fun Cart( navController: NavController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     Scaffold (
@@ -93,7 +93,9 @@ fun Cart() {
                 }
             }
             Button(
-                onClick = {  },
+                onClick = {
+                    navController.navigate("order_info")
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
@@ -450,7 +452,7 @@ fun addtocart() {
 }
 
 @Composable
-fun OrderInfo() {
+fun OrderInfo( navController: NavController) {
     var selectedPaymentMethod by remember { mutableStateOf("Visa") }
 
     Column(
@@ -699,7 +701,9 @@ fun OrderInfo() {
 
         // Confirm Button
         Button(
-            onClick = { /* Handle continue action */ },
+            onClick = {
+                navController.navigate("home_screen")
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)

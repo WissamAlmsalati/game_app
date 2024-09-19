@@ -34,8 +34,8 @@ fun HomeNavigation(navController: NavController) {
         ) {
             when (selectedIndex) {
                 0 -> HomeScreen( navController = navController)
-                1 -> ShopScreen()
-                2 -> Cart()
+                1 -> ShopScreen( )
+                2 -> Cart( navController = navController)
                 3 -> SettingsScreen( navController = navController)
             }
         }

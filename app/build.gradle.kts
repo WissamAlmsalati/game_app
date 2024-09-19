@@ -51,7 +51,6 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation("br.com.devsrsouza.compose.icons:simple-icons:1.1.1")
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -59,6 +58,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("br.com.devsrsouza.compose.icons:simple-icons:1.1.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     implementation("com.google.accompanist:accompanist-coil:0.15.0")
     implementation("androidx.compose.material:material-icons-extended:1.7.1")
