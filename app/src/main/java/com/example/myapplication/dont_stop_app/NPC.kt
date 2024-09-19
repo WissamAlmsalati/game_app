@@ -240,7 +240,7 @@ fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavControlle
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(innerPadding)
-                    .padding(16.dp)
+                    .padding(8.dp)
                     .padding(top = 20.dp, bottom = 25.dp),
                 contentAlignment = Alignment.Center
             ) {
@@ -250,7 +250,8 @@ fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavControlle
                     modifier = Modifier.fillMaxHeight()
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.Start,
+                        modifier = Modifier.padding(16.dp)
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.cod),
@@ -274,7 +275,6 @@ fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavControlle
         }
     )
 }
-
 
 @Composable
 fun ScrollableRowOfImages() {
@@ -303,10 +303,10 @@ fun GameInfo() {
         Text(
             text = "Call of Duty",
             modifier = Modifier
-                .width(110.dp)
+                .fillMaxWidth()
                 .height(28.dp),
             style = androidx.compose.ui.text.TextStyle(
-                fontSize = 20.sp,
+                fontSize = 26.sp,
                 lineHeight = 28.sp,
                 fontWeight = FontWeight.W500,
                 color = Color.Black,
@@ -315,12 +315,13 @@ fun GameInfo() {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Lorem Ipsum is simply dummy text...",
-            modifier = Modifier.width(309.dp),
+            modifier = Modifier
+                .fillMaxWidth(),
             style = androidx.compose.ui.text.TextStyle(
-                fontSize = 11.sp,
+                fontSize = 13.sp,
                 lineHeight = 12.1.sp,
                 fontWeight = FontWeight.W500,
-                color = Color.Black,
+                color = Color.Gray,
             )
         )
     }
