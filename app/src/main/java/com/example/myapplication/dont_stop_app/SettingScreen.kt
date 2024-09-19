@@ -1,6 +1,7 @@
 // File: app/src/main/java/com/example/myapplication/dont_stop_app/SettingScreen.kt
 package com.example.dont_stop_app
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,7 +20,7 @@ import com.example.myapplication.util.MySharedPref
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(navController: NavController?) {
+fun SettingsScreen(navController: NavController) {
     val context = LocalContext.current
 
     Scaffold(
@@ -98,8 +99,10 @@ fun SettingsScreen(navController: NavController?) {
             CustomButton(text = "Change User name", icon = R.drawable.applogo)
             CustomButton(text = "Log out", icon = R.drawable.applogo, onClick = {
                 val sharedPref = MySharedPref(context)
+                Log.d("Navigation", "navController is: $navController")
+
                 sharedPref.clearToken()
-                navController?.navigate("login_screen") {
+                navController.navigate("login_screen") {
                     popUpTo("home_screen") { inclusive = true }
                 }
             })

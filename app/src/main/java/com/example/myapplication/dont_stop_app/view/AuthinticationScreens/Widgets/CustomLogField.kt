@@ -28,12 +28,12 @@ fun CustomLogField(
     text: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     hint: String,
-    containerColor: Color,
-    focusedIndecatorColor: Color,
-    unfocusedColor: Color,
-    shape: RoundedCornerShape,
-    focusColor: Color, // New parameter for focus color
-    placeholderTextStyle: TextStyle = TextStyle(fontSize = 16.sp), // New parameter for placeholder text style
+    containerColor: Color = Color.Gray, // Default container color to grey
+    focusedIndecatorColor: Color = Color.Blue, // Default focused indicator color to blue
+    unfocusedColor: Color = Color.Transparent, // No border when unfocused
+    shape: RoundedCornerShape = RoundedCornerShape(8.dp),
+    focusColor: Color = Color.Blue, // Default focus color to blue
+    placeholderTextStyle: TextStyle = TextStyle(fontSize = 16.sp),
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -46,12 +46,12 @@ fun CustomLogField(
                 .padding(start = 3.dp, bottom = 10.dp),
             style = TextStyle(
                 fontSize = 8.sp,
-                color = Color.White // Same blue color as the one in the image
+                color = Color.White
             )
         )
         Card(
             shape = shape,
-            elevation = CardDefaults.cardElevation(defaultElevation = 20.dp), // Use CardDefaults.cardElevation
+            elevation = CardDefaults.cardElevation(defaultElevation = 20.dp),
             modifier = Modifier
                 .width(375.dp)
                 .height(60.dp)
@@ -59,17 +59,17 @@ fun CustomLogField(
             OutlinedTextField(
                 value = text,
                 onValueChange = onValueChange,
-                placeholder = { Text(hint, style = placeholderTextStyle , ) },
+                placeholder = { Text(hint, style = placeholderTextStyle) },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     containerColor = containerColor,
                     focusedBorderColor = focusedIndecatorColor,
                     unfocusedBorderColor = unfocusedColor,
-                    cursorColor = focusColor, // Use the new focus color parameter
-                    focusedLabelColor = focusColor, // Add focused label color
-                    unfocusedLabelColor = unfocusedColor // Add unfocused label color
+                    cursorColor = focusColor,
+                    focusedLabelColor = focusColor,
+                    unfocusedLabelColor = unfocusedColor,
                 ),
                 shape = shape,
-                textStyle = TextStyle(fontSize = 16.sp), // Set font size here
+                textStyle = TextStyle(fontSize = 16.sp),
                 maxLines = 1,
                 modifier = Modifier.fillMaxWidth()
             )
