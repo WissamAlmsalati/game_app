@@ -80,7 +80,7 @@ fun LoginScreen(navController: NavController) {
                   unfocusedColor = Color.White,
                   shape = RoundedCornerShape(15.dp),
                   focusColor = Color(0xFF007AC3),
-                  placeholderTextStyle = TextStyle(fontSize = 8.sp)
+                  placeholderTextStyle = TextStyle(fontSize = 12.sp)
                )
                Spacer(modifier = Modifier.height(5.dp))
                CustomLogField(
@@ -93,7 +93,7 @@ fun LoginScreen(navController: NavController) {
                   unfocusedColor = Color.White,
                   shape = RoundedCornerShape(15.dp),
                   focusColor = Color(0xFF007AC3),
-                  placeholderTextStyle = TextStyle(fontSize = 8.sp)
+                  placeholderTextStyle = TextStyle(fontSize = 12.sp)
                )
                Spacer(modifier = Modifier.height(10.dp))
                CustomButton(
@@ -156,14 +156,7 @@ fun LoginScreen(navController: NavController) {
                   // Handle Google Sign in
 
             }
-               GoogleSignInButton(
-                  buttonText = "Sign in with Google",
-                  backgroundColor = Color(0xFFffffff),
-                  contentColor = Color.Black
-               ) {
-                  navController.navigate("home_screen")
 
-               }
          }
       }
    }
