@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.AutoAwesomeMosaic
+import androidx.compose.material.icons.filled.CreditCard
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.*
@@ -451,269 +452,265 @@ fun addtocart() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OrderInfo( navController: NavController) {
+fun OrderInfo(navController: NavController) {
     var selectedPaymentMethod by remember { mutableStateOf("Visa") }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(816.dp)
-            .padding(top = 56.dp)
-        // .background(Color.Gray)
-    ) {
-        // Order Information Header
-        Text(
-            text = "Order Information",
-            style = TextStyle(
-                fontSize = 35.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            ),
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .padding(horizontal = 16.dp)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Subtotal Row
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Subtotal",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "Order Information") },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MainColor,
+                    titleContentColor = Color.White
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
+                },
+                scrollBehavior = scrollBehavior
             )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = "$70",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Shipping Row
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Shipping",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = "Free",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-        // Total Row
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Total",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = "$70",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-        // Delivery Address Row
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Delivery Address",
-                style = TextStyle(
-                    fontSize = 26.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Icon(
-                imageVector = Icons.Default.ArrowForward,
-                contentDescription = "More",
-                tint = Color.Black
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.cod),
-                contentDescription = "image description",
-                contentScale = ContentScale.FillBounds,
+        },
+        content = { innerPadding ->
+            Column(
                 modifier = Modifier
-                    .height(75.dp)
-                    .width(125.dp)
-                    .clip(RoundedCornerShape(24.dp))
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(
-                text = "Address",
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            RadioButton(
-                selected = true,
-                onClick = { /* Handle radio button click */ }
-            )
-        }
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .background(Color(0xFFF2F2F2)) // Light background color for better contrast
+            ) {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Subtotal",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "70$",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                        }
+                    }
 
-        Spacer(modifier = Modifier.height(8.dp))
-        // Payment Method Row
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Payment Method",
-                style = TextStyle(
-                    fontSize = 26.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Icon(
-                imageVector = Icons.Default.AutoAwesomeMosaic,
-                contentDescription = "More",
-                tint = Color.Black,
-                modifier = Modifier.padding(end = 0.dp)
-            )
-        }
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Shipping",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "Free",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                        }
+                    }
 
-        Spacer(modifier = Modifier.height(8.dp))
-        // Payment Options (Visa)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.cod),
-                contentDescription = "Visa",
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .height(75.dp)
-                    .width(125.dp)
-                    .clip(RoundedCornerShape(24.dp))
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(text = "Visa")
-            Spacer(modifier = Modifier.weight(1f))
-            RadioButton(
-                selected = selectedPaymentMethod == "Visa",
-                onClick = { selectedPaymentMethod = "Visa" }
-            )
-        }
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Total",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "$70",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                        }
+                    }
 
-        Spacer(modifier = Modifier.height(8.dp))
-        // Payment Options (Cash)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp)
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.cod),
-                contentDescription = "Cash",
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .height(75.dp)
-                    .width(125.dp)
-                    .clip(RoundedCornerShape(24.dp))
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text(text = "Cash")
-            Spacer(modifier = Modifier.weight(1f))
-            RadioButton(
-                selected = selectedPaymentMethod == "Cash",
-                onClick = { selectedPaymentMethod = "Cash" }
-            )
-        }
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Delivery Address",
+                                style = TextStyle(
+                                    fontSize = 26.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Icon(
+                                imageVector = Icons.Default.ArrowForward,
+                                contentDescription = "More",
+                                tint = Color.Black
+                            )
+                        }
+                    }
 
-        Spacer(modifier = Modifier.weight(1f))
+                    item {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.cod),
+                                contentDescription = "image description",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .height(75.dp)
+                                    .width(125.dp)
+                                    .clip(RoundedCornerShape(24.dp))
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Text(
+                                text = "Address",
+                                style = TextStyle(
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            RadioButton(
+                                selected = true,
+                                onClick = { /* Handle radio button click */ }
+                            )
+                        }
+                    }
 
-        // Confirm Button
-        Button(
-            onClick = {
-                navController.navigate("home_screen")
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF007AC3),
-                contentColor = Color.White
-            )
-        ) {
-            Text(text = "Confirm")
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Payment Method",
+                                style = TextStyle(
+                                    fontSize = 26.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color.Black
+                                )
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Icon(
+                                imageVector = Icons.Default.CreditCard,
+                                contentDescription = "Payment Options",
+                                tint = Color.Black
+                            )
+                        }
+                    }
+
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.cod),
+                                contentDescription = "Visa",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .height(75.dp)
+                                    .width(125.dp)
+                                    .clip(RoundedCornerShape(24.dp))
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Text(text = "Visa")
+                            Spacer(modifier = Modifier.weight(1f))
+                            RadioButton(
+                                selected = selectedPaymentMethod == "Visa",
+                                onClick = { selectedPaymentMethod = "Visa" }
+                            )
+                        }
+                    }
+
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.cod),
+                                contentDescription = "Cash",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .height(75.dp)
+                                    .width(125.dp)
+                                    .clip(RoundedCornerShape(24.dp))
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Text(text = "Cash")
+                            Spacer(modifier = Modifier.weight(1f))
+                            RadioButton(
+                                selected = selectedPaymentMethod == "Cash",
+                                onClick = { selectedPaymentMethod = "Cash" }
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                // Confirm Button at the bottom
+                Button(
+                    onClick = {
+                        navController.navigate("home_screen") // Navigate to home
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF007AC3),
+                        contentColor = Color.White
+                    )
+                ) {
+                    Text(text = "Confirm")
+                }
+            }
         }
-    }
+    )
 }
