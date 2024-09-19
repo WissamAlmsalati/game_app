@@ -20,8 +20,13 @@ class MySharedPref(context: Context) {
     }
 
     fun getToken(): String? {
-        val token = sharedPref.getString(TOKEN_KEY, null)
-        Log.d("MySharedPref", "Token retrieved: $token")
-        return token
+        return sharedPref.getString(TOKEN_KEY, null)
+    }
+
+    fun clearToken() {
+        sharedPref.edit()
+            .remove(TOKEN_KEY)
+            .apply()
+        Log.d("MySharedPref", "Token cleared")
     }
 }

@@ -18,8 +18,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.dont_stop_app.HomeNavigation
+import com.example.dont_stop_app.SettingsScreen
 import com.example.myapplication.dont_stop_app.ItemDetailsScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.example.myapplication.util.MySharedPref
 import com.example.myapplication.view.AuthinticationScreens.Screens.LoginScreen
 import com.example.myapplication.view.AuthinticationScreens.Screens.SignupScreen
 import com.example.myapplication.view.onBording.OnboardingScreen
@@ -28,31 +30,34 @@ import com.example.myapplication.view.splashScreen.SplashScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Check for token in SharedPreferences
+        val sharedPref = MySharedPref(this)
+        val token = sharedPref.getToken()
+        val startDestination = if (token.isNullOrEmpty()) "splash_screen" else "home_screen"
+
         setContent {
             MyApplicationTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
                     val navController = rememberNavController()
-                    SetupNavGraph(navController = navController)
+                    SetupNavGraph(navController = navController, startDestination = startDestination)
                 }
             }
         }
     }
- }
+}
 
 @Composable
-fun SetupNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "splash_screen") {
+fun SetupNavGraph(navController: NavHostController, startDestination: String) {
+    NavHost(navController = navController, startDestination = startDestination) {
         composable("login_screen") { LoginScreen(navController = navController) }
         composable("home_screen") { HomeNavigation() }
-        composable("signup_screen") {ItemDetailsScreen(navController = navController) }
+        composable("settings_screen") { SettingsScreen(navController = navController) }
         composable("signup_screen") { SignupScreen(navController = navController) }
         composable("splash_screen") {
             SplashScreen {
                 navController.navigate("onboarding_screen") {
                     popUpTo("splash_screen") { inclusive = true }
-
-
                 }
             }
         }
@@ -61,11 +66,12 @@ fun SetupNavGraph(navController: NavHostController) {
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
         val navController = rememberNavController()
-        SetupNavGraph(navController = navController)
+        SetupNavGraph(navController = navController, startDestination = "splash_screen")
     }
 }

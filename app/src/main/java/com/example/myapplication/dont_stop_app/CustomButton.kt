@@ -21,7 +21,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CustomButton(text: String, icon: Int) {
+fun CustomButton(
+    text: String,
+    icon: Int,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
     Spacer(modifier = Modifier.height(19.dp))
     Box(
         modifier = Modifier
@@ -38,7 +43,7 @@ fun CustomButton(text: String, icon: Int) {
                 modifier = Modifier
                     .fillMaxSize()
                     .shadow(8.dp, shape = RoundedCornerShape(10.dp)),
-                onClick = { Unit },
+                onClick = onClick,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White) // Set button color to white
             ) {

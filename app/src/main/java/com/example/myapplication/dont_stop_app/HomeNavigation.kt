@@ -36,7 +36,7 @@ fun HomeNavigation() {
                 0 -> HomeScreen( navController = navController)
                 1 -> ShopScreen()
                 2 -> Cart()
-                3 -> SettingsScreen()
+                3 -> SettingsScreen( navController = navController)
             }
         }
     }
