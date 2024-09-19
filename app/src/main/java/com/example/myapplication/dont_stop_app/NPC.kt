@@ -72,7 +72,7 @@ fun Cart() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues) // Apply padding from Scaffold
-                .padding(top = 16.dp, bottom = 80.dp), // Extra padding
+                .padding( bottom = 80.dp), // Extra padding
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -83,7 +83,7 @@ fun Cart() {
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                items(5) {
+                items(10) {
                     card()
                 }
             }
@@ -104,8 +104,105 @@ fun Cart() {
     }
 }
 
+@Composable
+fun card() {
+    var itemCount by remember { mutableStateOf(1) }
+Box(
+modifier = Modifier
+.padding(16.dp)
+.height(120.dp) // Adjusted height to fit the button
+.width(358.dp)
+.background(Color.White, shape = RoundedCornerShape(16.dp))
+.clip(RoundedCornerShape(16.dp))
+.shadow(
+elevation = 150.dp,
+shape = RoundedCornerShape(16.dp),
+clip = false
+)
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.cod),
+                contentDescription = "image description",
+                modifier = Modifier
+                    .height(75.dp)
+                    .width(125.dp)
+                    .clip(RoundedCornerShape(24.dp))
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = "Item Name",
+                    style = androidx.compose.ui.text.TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "Price: \$70",
+                    modifier = Modifier.padding(bottom = 5.dp),
+                    style = androidx.compose.ui.text.TextStyle(
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+                )
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                IconButton(onClick = { /* Handle delete action */ }) {
+                    Icon(
+                        imageVector = Icons.Default.DeleteOutline,
+                        contentDescription = "Delete",
+                        tint = Color.Black
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = { if (itemCount > 1) itemCount-- }) {
+                        Icon(
+                            imageVector = Icons.Default.Remove,
+                            contentDescription = "Decrement",
+                            tint = Color.Black
+                        )
+                    }
+                    Text(
+                        text = itemCount.toString(), // Item count
+                        style = androidx.compose.ui.text.TextStyle(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    )
+                    IconButton(onClick = { itemCount++ }) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "Increment",
+                            tint = Color.Black
+                        )
+                    }
+                }
+            }
+        }
 
+    }
 
+}
+}
 
 @Composable
 fun ItemDetailsScreen( modifier: Modifier = Modifier, navController: NavController) {
@@ -143,100 +240,7 @@ fun ItemDetailsScreen( modifier: Modifier = Modifier, navController: NavControll
     }
 }
 
-@Composable
-fun card() {
-    var itemCount by remember { mutableStateOf(1) }
 
-    Box(
-        modifier = Modifier
-            .padding(16.dp)
-            .height(120.dp) // Adjusted height to fit the button
-            .width(358.dp)
-            .background(Color.White, shape = RoundedCornerShape(16.dp))
-            .clip(RoundedCornerShape(16.dp))
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.cod),
-                    contentDescription = "image description",
-                    modifier = Modifier
-                        .height(75.dp)
-                        .width(125.dp)
-                        .clip(RoundedCornerShape(24.dp))
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(
-                        text = "Item Name",
-                        style = androidx.compose.ui.text.TextStyle(
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Price: \$70",
-                        style = androidx.compose.ui.text.TextStyle(
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black
-                        )
-                    )
-                }
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = { /* Handle delete action */ }) {
-                        Icon(
-                            imageVector = Icons.Default.DeleteOutline,
-                            contentDescription = "Delete",
-                            tint = Color.Black
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { if (itemCount > 1) itemCount-- }) {
-                            Icon(
-                                imageVector = Icons.Default.Remove,
-                                contentDescription = "Decrement",
-                                tint = Color.Black
-                            )
-                        }
-                        Text(
-                            text = itemCount.toString(), // Item count
-                            style = androidx.compose.ui.text.TextStyle(
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Black
-                            )
-                        )
-                        IconButton(onClick = { itemCount++ }) {
-                            Icon(
-                                imageVector = Icons.Default.Add,
-                                contentDescription = "Increment",
-                                tint = Color.Black
-                            )
-                        }
-                    }
-                }
-            }
-
-        }
-
-    }
-}
 
 @Composable
 fun ScrollableRowOfImages() {
