@@ -42,10 +42,13 @@ import compose.icons.simpleicons.Xbox
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Cart( navController: NavController) {
+fun Cart(navController: NavController) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
-    Scaffold (
+    // List of items in the cart
+    val cartItems = remember { mutableStateListOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5") }
+
+    Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
@@ -73,12 +76,12 @@ fun Cart( navController: NavController) {
                 scrollBehavior = scrollBehavior,
             )
         }
-    ) { paddingValues -> // Use padding values provided by Scaffold
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues) // Apply padding from Scaffold
-                .padding( bottom = 80.dp), // Extra padding
+                .padding(paddingValues)
+                .padding(bottom = 80.dp),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -89,10 +92,13 @@ fun Cart( navController: NavController) {
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                items(10) {
-                    card()
+                items(cartItems.size) { index ->
+                    card(cartItems[index], onDelete = {
+                        cartItems.removeAt(index) // Remove item from the list
+                    })
                 }
             }
+
             Button(
                 onClick = {
                     navController.navigate("order_info")
@@ -113,103 +119,102 @@ fun Cart( navController: NavController) {
 }
 
 @Composable
-fun card() {
+fun card(itemName: String, onDelete: () -> Unit) {
     var itemCount by remember { mutableStateOf(1) }
-Box(
-modifier = Modifier
-.padding(16.dp)
-.height(120.dp) // Adjusted height to fit the button
-.width(358.dp)
-.background(Color.White, shape = RoundedCornerShape(16.dp))
-.clip(RoundedCornerShape(16.dp))
-.shadow(
-elevation = 150.dp,
-shape = RoundedCornerShape(16.dp),
-clip = false
-)
-) {
-    Column(
+
+    Box(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.cod),
-                contentDescription = "image description",
-                modifier = Modifier
-                    .height(75.dp)
-                    .width(125.dp)
-                    .clip(RoundedCornerShape(24.dp))
+            .padding(16.dp)
+            .height(120.dp)
+            .width(358.dp)
+            .background(Color.White, shape = RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(16.dp))
+            .shadow(
+                elevation = 150.dp,
+                shape = RoundedCornerShape(16.dp),
+                clip = false
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            Column(
-                modifier = Modifier.weight(1f)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Item Name",
-                    style = androidx.compose.ui.text.TextStyle(
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
-                    )
+                Image(
+                    painter = painterResource(id = R.drawable.cod),
+                    contentDescription = "image description",
+                    modifier = Modifier
+                        .height(75.dp)
+                        .width(125.dp)
+                        .clip(RoundedCornerShape(24.dp))
                 )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Price: \$70",
-                    modifier = Modifier.padding(bottom = 5.dp),
-                    style = androidx.compose.ui.text.TextStyle(
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
-                    )
-                )
-            }
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                IconButton(onClick = { /* Handle delete action */ }) {
-                    Icon(
-                        imageVector = Icons.Default.DeleteOutline,
-                        contentDescription = "Delete",
-                        tint = Color.Black
-                    )
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(onClick = { if (itemCount > 1) itemCount-- }) {
-                        Icon(
-                            imageVector = Icons.Default.Remove,
-                            contentDescription = "Decrement",
-                            tint = Color.Black
-                        )
-                    }
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = itemCount.toString(), // Item count
-                        style = androidx.compose.ui.text.TextStyle(
-                            fontSize = 16.sp,
+                        text = itemName, // Use item name passed as parameter
+                        style = TextStyle(
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black
                         )
                     )
-                    IconButton(onClick = { itemCount++ }) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Price: \$70",
+                        modifier = Modifier.padding(bottom = 5.dp),
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    )
+                }
+
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    IconButton(onClick = onDelete) { // Trigger onDelete when delete is clicked
                         Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = "Increment",
+                            imageVector = Icons.Default.DeleteOutline,
+                            contentDescription = "Delete",
                             tint = Color.Black
                         )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        IconButton(onClick = { if (itemCount > 1) itemCount-- }) {
+                            Icon(
+                                imageVector = Icons.Default.Remove,
+                                contentDescription = "Decrement",
+                                tint = Color.Black
+                            )
+                        }
+                        Text(
+                            text = itemCount.toString(), // Item count
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black
+                            )
+                        )
+                        IconButton(onClick = { itemCount++ }) {
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Increment",
+                                tint = Color.Black
+                            )
+                        }
                     }
                 }
             }
         }
-
     }
-
-}
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -280,8 +285,6 @@ fun ItemDetailsScreen(modifier: Modifier = Modifier, navController: NavControlle
         }
     )
 }
-
-
 
 
 @Composable
