@@ -69,7 +69,7 @@ fun CustomLogField(
                     unfocusedLabelColor = unfocusedColor // Add unfocused label color
                 ),
                 shape = shape,
-                textStyle = TextStyle(fontSize = 50.sp), // Set font size here
+                textStyle = TextStyle(fontSize = 16.sp), // Set font size here
                 maxLines = 1,
                 modifier = Modifier.fillMaxWidth()
             )

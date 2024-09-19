@@ -3,14 +3,20 @@ package com.example.myapplication.network
 import android.content.Context
 import android.util.Log
 import com.example.myapplication.util.MySharedPref
-import io.ktor.client.*
-import io.ktor.client.call.*
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
-import io.ktor.serialization.gson.*
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
+import io.ktor.client.utils.EmptyContent.contentType
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.contentType
+import io.ktor.serialization.gson.gson
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

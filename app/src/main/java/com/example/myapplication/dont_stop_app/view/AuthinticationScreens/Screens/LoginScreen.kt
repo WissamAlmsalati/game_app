@@ -40,7 +40,7 @@ fun LoginScreen(navController: NavController) {
 
    LaunchedEffect(viewModel.isLoginSuccess) {
       if (viewModel.isLoginSuccess) {
-         navController.navigate("signup_screen")
+         navController.navigate("home_screen")
       }
    }
    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
