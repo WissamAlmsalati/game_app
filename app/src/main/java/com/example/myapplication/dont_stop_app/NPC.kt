@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.AutoAwesomeMosaic
 import androidx.compose.material.icons.filled.DeleteOutline
-import androidx.compose.material.icons.filled.LaptopChromebook
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -32,6 +31,11 @@ import androidx.navigation.NavController
 import com.example.dont_stop_app.ui.theme.MainColor
 import com.example.dont_stop_app.ui.theme.WhiteColor
 import com.example.myapplication.R
+import compose.icons.SimpleIcons
+import compose.icons.simpleicons.Nintendo
+import compose.icons.simpleicons.Playstation
+import compose.icons.simpleicons.Steam
+import compose.icons.simpleicons.Xbox
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -225,6 +229,7 @@ fun ItemDetailsScreen( modifier: Modifier = Modifier, navController: NavControll
                     contentDescription = "image description",
                     contentScale = ContentScale.FillBounds,
                     modifier = Modifier
+                        .fillMaxWidth()
                         .height(226.dp)
                         .clip(RoundedCornerShape(36.dp))
                 )
@@ -240,15 +245,13 @@ fun ItemDetailsScreen( modifier: Modifier = Modifier, navController: NavControll
     }
 }
 
-
-
 @Composable
 fun ScrollableRowOfImages() {
     Row(
         modifier = Modifier
             .horizontalScroll(rememberScrollState())
     ) {
-        repeat(3) {
+        repeat(4) {
             Image(
                 painter = painterResource(id = R.drawable.cod),
                 contentDescription = "image description",
@@ -296,8 +299,16 @@ fun GameInfo() {
 fun PlatformSelection() {
     val platforms = listOf("PlayStation", "Xbox", "Nintendo", "PC")
     var selectedPlatform by remember { mutableStateOf(platforms[0]) }
-
+    Spacer(modifier = Modifier.height(18.dp))
     Column {
+        Text(
+            text = "Select Platform",
+            style = TextStyle(
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+        )
         Spacer(modifier = Modifier.height(12.dp))
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -316,6 +327,7 @@ fun PlatformSelection() {
 
 @Composable
 fun PlatformButton(platformName: String, isSelected: Boolean, onClick: () -> Unit) {
+
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
@@ -327,10 +339,10 @@ fun PlatformButton(platformName: String, isSelected: Boolean, onClick: () -> Uni
     ) {
         Icon(
             imageVector = when (platformName) {
-                "PlayStation" -> Icons.Default.Add
-                "Xbox" -> Icons.Default.Remove
-                "Nintendo" -> Icons.Default.DeleteOutline
-                "PC" -> Icons.Default.LaptopChromebook
+                "PlayStation" -> SimpleIcons.Playstation
+                "Xbox" -> SimpleIcons.Xbox
+                "Nintendo" -> SimpleIcons.Nintendo
+                "PC" -> SimpleIcons.Steam
                 else -> Icons.Default.Add
             },
             contentDescription = platformName,
